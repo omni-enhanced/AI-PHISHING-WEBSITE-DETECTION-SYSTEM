@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="admin-panel">
+  <h1>🔐 Admin Dashboard</h1>
+
+  <div class="stats">
+    <p>Total Scans: <span id="totalScans">0</span></p>
+    <p>Phishing Detected: <span id="phishingCount">0</span></p>
+    <p>Safe Sites: <span id="safeCount">0</span></p>
+    <p>Visitors: <span id="visitorCount">0</span></p>
+  </div>
+
+  <h2>Scan History</h2>
+  <ul id="historyList"></ul>
+
+  <button onclick="goHome()">Back</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

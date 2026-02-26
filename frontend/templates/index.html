@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+    <div class="splash-bg-fx"></div>
+    <div class="splash-core">
+        <div class="splash-emblem">
+            <svg class="emblem-svg" viewBox="0 0 120 120" fill="none">
+                <defs>
+                    <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ff2d37"/>
+                        <stop offset="100%" stop-color="#7a0008"/>
+                    </linearGradient>
+                </defs>
+                <polygon points="60,8 105,33 105,87 60,112 15,87 15,33"
+                    stroke="url(#sg)" stroke-width="1.5" fill="rgba(224,27,36,0.05)"/>
+                <path d="M60 28L82 38V60C82 72 72 82 60 86C48 82 38 72 38 60V38L60 28Z"
+                    stroke="#e01b24" stroke-width="1.5" fill="rgba(224,27,36,0.1)"/>
+                <path d="M50 58L57 65L71 50" stroke="#ff4d55" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="60" cy="60" r="46" stroke="rgba(224,27,36,0.12)" stroke-width="1" stroke-dasharray="3 7"/>
+            </svg>
+            <div class="emblem-glow"></div>
+            <div class="orbit-ring r1"></div>
+            <div class="orbit-ring r2"></div>
+        </div>
+        <div class="splash-text">
+            <div class="splash-eyebrow">NEURAL THREAT ANALYSIS ENGINE</div>
+            <h1 class="splash-headline">
+                <span class="sh-line1">AI PHISHING</span>
+                <span class="sh-line2">DETECTION <em>SYSTEM</em></span>
+            </h1>
+            <div class="splash-version">v3.2.1 &nbsp;·&nbsp; HYBRID ELM &nbsp;·&nbsp; REAL-TIME</div>
+        </div>
+        <div class="splash-loader-wrap">
+            <div class="splash-track">
+                <div class="splash-fill" id="splashBar"></div>
+                <div class="splash-sheen"></div>
+            </div>
+            <div class="splash-meta">
+                <span id="loaderStatus">INITIALIZING</span>
+                <span id="splashPct">0%</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="mainApp">
+    <div class="ambient-left"></div>
+    <div class="ambient-right"></div>
+
+    <div class="app-layout">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <svg width="26" height="26" viewBox="0 0 120 120" fill="none">
+                    <polygon points="60,8 105,33 105,87 60,112 15,87 15,33" stroke="#e01b24" stroke-width="2" fill="rgba(224,27,36,0.08)"/>
+                    <path d="M60 28L82 38V60C82 72 72 82 60 86C48 82 38 72 38 60V38L60 28Z" stroke="#e01b24" stroke-width="2" fill="rgba(224,27,36,0.08)"/>
+                    <path d="M50 58L57 65L71 50" stroke="#e01b24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>PHISH<em>GUARD</em></span>
+            </div>
+            <div class="header-right">
+                <a href="admin.html" class="admin-link secret-admin">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    ADMIN PANEL
+                </a>
+                <div class="status-badge">
+                    <span class="badge-dot"></span>SYSTEM ACTIVE
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-tag">// HYBRID ELM · THREAT INTELLIGENCE</div>
+            <h2 class="hero-title">Detect Phishing<br><span>Before It Strikes</span></h2>
+            <p class="hero-sub">Paste any URL below. Our AI analyzes patterns, structure, and threat signatures in real time.</p>
+        </section>
+
+        <!-- Scan Panel -->
+        <div class="scan-panel">
+            <div class="panel-label">TARGET URL</div>
+            <div class="input-row">
+                <div class="input-wrap">
+                    <input type="text" id="urlInput" placeholder="https://enter-url-to-analyze.com" autocomplete="off" spellcheck="false">
+                </div>
+                <button id="scanBtn" onclick="analyzeUrl()">
+                    <span class="btn-glow"></span>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
+                        <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.5"/>
+                        <path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>
+                    ANALYZE
+                </button>
+            </div>
+        </div>
+
+        <!-- Loader -->
+        <div id="loader" class="scan-loader hidden">
+            <div class="pulse-wrap">
+                <div class="pulse-ring"></div>
+                <div class="pulse-ring p2"></div>
+                <div class="pulse-core"></div>
+            </div>
+            <div class="loader-text">
+                <span id="scanPhase">SCANNING TARGET</span>
+                <span class="l-dots"><i></i><i></i><i></i></span>
+            </div>
+        </div>
+
+        <!-- Result -->
+        <div id="resultCard" class="result-panel hidden">
+            <div class="result-top">
+                <div class="result-icon-wrap" id="resultIconWrap">
+                    <svg id="iconSafe" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden">
+                        <path d="M12 3L20 7V13C20 17.4 16.4 21 12 22C7.6 21 4 17.4 4 13V7L12 3Z" stroke="currentColor" stroke-width="1.8" fill="rgba(34,197,94,0.1)"/>
+                        <path d="M9 12L11 14L15 10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <svg id="iconThreat" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hidden">
+                        <path d="M12 3L20 7V13C20 17.4 16.4 21 12 22C7.6 21 4 17.4 4 13V7L12 3Z" stroke="currentColor" stroke-width="1.8" fill="rgba(224,27,36,0.1)"/>
+                        <path d="M12 8V12M12 16H12.01" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="verdict-eyebrow">VERDICT</div>
+                    <div class="verdict-text" id="statusText">—</div>
+                </div>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="mc-label">THREAT SCORE</div>
+                    <div class="mc-value" id="riskVal">0%</div>
+                    <div class="mc-track"><div class="mc-fill threat-fill" id="riskBar"></div></div>
+                </div>
+                <div class="metric-card">
+                    <div class="mc-label">SAFETY SCORE</div>
+                    <div class="mc-value" id="safeVal">0%</div>
+                    <div class="mc-track"><div class="mc-fill safe-fill" id="safeBar"></div></div>
+                </div>
+            </div>
+            <p id="matchInfo" class="match-info hidden"></p>
+        </div>
+
+        <!-- ══ RECENT SCAN HISTORY ══ -->
+        <div class="history-section" id="historySection">
+            <div class="history-header">
+                <div class="history-title-row">
+                    <div class="history-title">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        RECENT SCANS
+                        <span class="history-count" id="historyCount">0</span>
+                    </div>
+                    <button class="clear-btn" onclick="clearHistory()" title="Clear all history">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+                        CLEAR
+                    </button>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="history-search-wrap">
+                    <svg class="search-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/>
+                    </svg>
+                    <input type="text" id="historySearch" placeholder="Search scanned URLs..." oninput="filterHistory(this.value)" autocomplete="off" spellcheck="false">
+                    <button class="search-clear-btn hidden" id="searchClearBtn" onclick="clearSearch()">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- History List -->
+            <div class="history-list" id="historyList">
+                <div class="history-empty" id="historyEmpty">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.3"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+                    <p>No scans yet. Analyze a URL above to get started.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="app-footer">
+            <span>PHISHGUARD AI</span> · Hybrid ELM · <span>Real-time Protection</span>
+        </footer>
+    </div>
+</div>
+
+<script src="../static/js/script.js"></script>
+</body>
+</html>
