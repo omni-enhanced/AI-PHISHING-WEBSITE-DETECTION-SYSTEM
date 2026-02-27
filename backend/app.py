@@ -25,7 +25,9 @@ def extract_domain(url):
 # ======================
 # LOAD MODEL
 # ======================
-with open("elm_model.pkl", "rb") as f:
+import os
+model_path = os.path.join(os.path.dirname(__file__), "elm_model.pkl")
+with open(model_path, "rb") as f:
     model, scaler = pickle.load(f)
 
 # ======================
@@ -92,4 +94,10 @@ def scan():
 # RUN SERVER
 # ======================
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Bind to 0.0.0.0 and use the PORT env var for Render deployment
+    import os
+
+    port = int(os.environ.get("PORT", 5000))
+    # debug mode should be off in production, but we respect FLASK_DEBUG
+    debug_flag = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(host="0.0.0.0", port=port, debug=debug_flag)
