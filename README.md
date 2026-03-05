@@ -72,33 +72,36 @@ The system uses a **Feature-Based Extreme Learning Machine (ELM)** model.
 ---
 
 ## 📂 Project Structure
+
+```
 phishing-detection-system
 │
 ├── backend
-│ ├── main.py
-│ ├── feature_extractor.py
-│ ├── train_elm.py
-│ ├── elm_model.pkl
-│ ├── requirements.txt
-│ └── .env
+│   ├── main.py
+│   ├── feature_extractor.py
+│   ├── train_elm.py
+│   ├── elm_model.pkl
+│   ├── requirements.txt
+│   └── .env
 │
 ├── data
-│ └── phishing_dataset.csv
+│   └── phishing_dataset.csv
 │
 ├── frontend
-│ ├── login.html
-│ ├── register.html
-│ ├── dashboard.html
-│ ├── styles.css
-│ └── script.js
+│   ├── login.html
+│   ├── register.html
+│   ├── dashboard.html
+│   ├── styles.css
+│   └── script.js
 │
 ├── extension
-│ ├── manifest.json
-│ ├── background.js
-│ ├── content.js
-│ └── popup.html
+│   ├── manifest.json
+│   ├── background.js
+│   ├── content.js
+│   └── popup.html
 │
 └── README.md
+```
 
 
 ---
